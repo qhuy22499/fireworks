@@ -127,12 +127,18 @@ const messageText = document.getElementById('messageText');
 
 let currentMessage = 0;
 
+const audioElement = document.querySelector('audio');
 btn.addEventListener('click', () => {
+    audioElement.play().catch(error => {
+        console.error('Autoplay bị chặn, người dùng cần tương tác:', error);
+    });
+
     messageTitle.classList.add('hide');
     messageText.classList.add('hide');
     btn.classList.add('hide');
     showNextMessage();
 });
+
 
 function showNextMessage() {
     if (currentMessage < messages.length) {
